@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 80%;
+}
+
+th{
+  background-color: #783498;
+  color: #ffffff
+}
+
+td, th {
+
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+
+.center {
+  margin-left: auto;
+  margin-right: auto;
+}
+</style>
+</head>
+<body>
+
+<h2>Order Details</h2>
+
+<table class="center">
+  <tr>
+    <th>Order Details</th>
+    <th>Value</th>
+  </tr>
+  <tr>
+    <td>ID</td>
+    <td>{{id}}</td>
+  </tr>
+  <tr>
+    <td>Date Created</td>
+    <td style="background-color: #006680; color: #ffffff">{{date_created}}</td>
+  </tr>
+  <tr>
+    <td>Date Modified</td>
+    <td>{{date_modified}}</td>
+  </tr>
+  <tr>
+    <td>Order Status</td>
+    <td>{{status}}</td>
+  </tr>
+  <tr>
+    <td>Sub Total Including Tax</td>
+    <td>{{subtotal_inc_tax}}</td>
+  </tr>
+  <tr>
+    <td>Shipping Cost Including Tax</td>
+    <td>{{shipping_cost_inc_tax}}</td>
+  </tr>
+  <tr>
+    <td>Handling Cost Including Tax</td>
+    <td>{{handling_cost_inc_tax}}</td>
+  </tr>
+  <tr>
+    <td>Wrapping Cost Including Tax</td>
+    <td>{{wrapping_cost_inc_tax}}</td>
+  </tr>
+  <tr>
+    <td>Total Including Tax</td>
+    <td>{{total_inc_tax}}</td>
+  </tr>
+  <tr>
+    <td>Items Count</td>
+    <td>{{items_total}}</td>
+  </tr>
+  <tr>
+    <td>Payment method</td>
+    <td>{{payment_method}}</td>
+  </tr>
+
+  <tr>
+    <th colspan= "2">Billing Details</th>
+  </tr>
+  <tr>
+    <td>Billing Name</td>
+    <td>{{billing_address.first_name}} {{billing_address.last_name}}</td>
+  </tr>
+  <tr>
+    <td>Billing Company</td>
+    <td>{{billing_address.company}}</td>
+  </tr>
+  <tr>
+    <td>Billing Street</td>
+    <td>{{billing_address.street_1}}, {{billing_address.street_2}}</td>
+  </tr>
+  <tr>
+    <td>Billing City</td>
+    <td>{{billing_address.city}}</td>
+  </tr>
+  <tr>
+    <td>Billing Zip</td>
+    <td>{{billing_address.zip}}</td>
+  </tr>
+  <tr>
+    <td>Billing Country</td>
+    <td>{{billing_address.country}}</td>
+  </tr>
+  <tr>
+    <td>Billing Phone</td>
+    <td>{{billing_address.phone}}</td>
+  </tr>
+  <tr>
+    <td>Billing Mail</td>
+    <td>{{billing_address.email}}</td>
+  </tr>
+</table>
+
+  <div class="jumbotron text-center">
+    <h3>Choose a date and save to change the order Date</h3>
+    <br>
+    Current Order Date  -  {{date_created}}
+    <form action="/order" method="post">
+      <label for="newdate">Choose new date for this Order</label>
+      <input type="hidden" name="orderId" value={{id}} />
+      <input type="hidden" name="storeId" value={{storeId}}>
+      <input type="datetime-local" id="newdate" name="newdate" required>
+      <input type="submit" value="Save This Date">
+    </form>
+    <br><br>
+    <strong>Note:</strong>
+    This may not supported in Safari or Internet Explorer 11 (or earlier).
+    Please use other browsers
+  </div>
+</body>
+</html>
